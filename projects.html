@@ -147,6 +147,7 @@
       padding: 1rem 0;
       margin: 0;
       position: relative;
+      display: inline-block;
     }
     
     .project-title h3::before,
@@ -165,6 +166,46 @@
     
     .project-title h3::after {
       bottom: 0;
+    }
+    
+    /* Project Link Styles */
+    .project-link {
+      color: var(--primary);
+      margin-left: 10px;
+      text-decoration: none;
+      font-size: 0.8em;
+      transition: all 0.3s ease;
+      opacity: 0.7;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .project-link:hover {
+      opacity: 1;
+      color: var(--secondary);
+    }
+    
+    .project-link::after {
+      content: "Copy project link";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--dark);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .project-link:hover::after {
+      opacity: 1;
+      visibility: visible;
+      bottom: calc(100% + 5px);
     }
     
     .project-description {
@@ -406,7 +447,12 @@
         <!-- Project 1 -->
         <div class="project-item">
           <div class="project-title">
-            <h3>Quantum-Classical Hybrid Protocol for Secure Image Encryption</h3>
+            <h3>
+              Quantum-Classical Hybrid Protocol for Secure Image Encryption
+              <a href="#" class="project-link" title="Copy project link">
+                <i class="fas fa-link"></i>
+              </a>
+            </h3>
           </div>
           
           <div class="project-description">
@@ -444,10 +490,16 @@
             </div>
           </div>
         </div>
+        
         <!-- Project 2 -->
         <div class="project-item">
           <div class="project-title">
-            <h3>Simulation of a Quantum Private Query Protocol Using W-States in Qiskit with Noise Analysis</h3>
+            <h3>
+              Simulation of a Quantum Private Query Protocol Using W-States in Qiskit with Noise Analysis
+              <a href="#" class="project-link" title="Copy project link">
+                <i class="fas fa-link"></i>
+              </a>
+            </h3>
           </div>
           
           <div class="project-description">
@@ -460,7 +512,6 @@
               <img src="heatmap.png" alt="heatmap diagram" loading="lazy" width ="600" height="700">
               <div class="figure-label">Heatmap showing how protocol success varies with noise levels.</div>
             </div>
-            
           </div>
           
           <div class="project-details">
@@ -470,7 +521,6 @@
               <li>NISQ-Era Feasibility Analysis explores the robustness and practicality of QPQ on current quantum devices.</li>
               <li>Measurement noise poses a <strong>greater challenge</strong> to protocol reliability than gate noise. </li>
               <li>The protocol demonstrates robustness <strong>under low to moderate noise</strong>, highlighting its promise for NISQ-era devices.</li>
-              
             </ul>
             
             <div class="project-tech">
@@ -483,10 +533,16 @@
             </div>
           </div>
         </div>
+        
         <!-- Project 3 -->
         <div class="project-item">
           <div class="project-title">
-            <h3>4-bit synchronous up/down counter with Load and Reset using Proteus</h3>
+            <h3>
+              4-bit synchronous up/down counter with Load and Reset using Proteus
+              <a href="#" class="project-link" title="Copy project link">
+                <i class="fas fa-link"></i>
+              </a>
+            </h3>
           </div>
           
           <div class="project-description">
@@ -503,7 +559,6 @@
               <img src="down counter durra.png" alt="downcounter" loading="lazy" width ="600" height="700">
               <div class="figure-label">This is the 4 bit down counter for the counting sequence (6,5,4,1,0,6..)</div>
             </div>
-            
           </div>
           
           <div class="project-details">
@@ -512,8 +567,6 @@
               <li>The counter supports both upward and downward counting, along with preset (Load) and clear (Reset) operations.</li>
               <li> Suitable for a wide range of applications in <strong>digital electronics and control systems</strong>.</li>
               <li>Applicable in digital clocks, frequency dividers, memory address sequencing, and other digital logic circuits. </li>
-              
-              
             </ul>
             
             <div class="project-tech">
@@ -524,62 +577,111 @@
         </div>
 
         <!-- Project 4 -->
-<div class="project-item">
-  <div class="project-title">
-    <h3>Design an Inset-fed Microstrip Antenna at 2.4 GHz using ADS</h3>
-  </div>
-  
-  <div class="project-description">
-    <p>This project involved the design and simulation of an inset-fed rectangular microstrip patch antenna tuned to operate at 2.4 GHz using Advanced Design System (ADS), a powerful RF/microwave simulation tool. The antenna structure was optimized to achieve impedance matching and minimal signal reflection by adjusting the inset feed position and patch dimensions. Key performance metrics such as the <strong>reflection coefficient (S11), Smith chart, surface current distribution,</strong> and <strong>2D radiation pattern</strong> were analyzed. This was completed as part of an undergraduate project for my L-3, T-1 Microwave and Antenna Engineering sessional.</p>
-  </div>
-  
-  <div class="project-images">
-    <!-- First Row -->
-    <div class="image-row">
-      <div class="project-image">
-        <img src="layout.png" alt="Layout of Microstrip antenna" loading="lazy">
-        <div class="figure-label"> Layout of inset-fed Microstrip Antenna</div>
-      </div>
-      <div class="project-image">
-        <img src="2D radiation.png" alt="2D radiation" loading="lazy">
-        <div class="figure-label">2D radiation pattern</div>
-      </div>
-    </div>
-    
-    <!-- Second Row -->
-    <div class="image-row">
-      <div class="project-image">
-        <img src="3D radiation.png" alt="2D radiation pattern" loading="lazy">
-        <div class="figure-label">3D radiation pattern</div>
-      </div>
-      <div class="project-image">
-        <img src="current distribution.png" alt="Current distribution " loading="lazy">
-        <div class="figure-label">Current distribution </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="project-details">
-    <h4>Key Features:</h4>
-    <ul>
-      <li>Designed specifically for ISM band applications such as Wi-Fi, Zigbee, and Bluetooth.</li>
-      <li>Achieved a <strong>Reflection Coefficient (S11) ~ –20 dB </strong> that indicates strong impedance matching and low return loss at the design frequency.</li>
-      <li>2D Radiation Pattern Analysis simulated the antenna's radiation behavior in the E-plane and H-plane to <strong>assess directivity and beam shape</strong>.</li>
-      <li>Surface Current Distribution visualized current flow patterns to <strong>verify resonant behavior and validate efficient radiation</strong>.</li>
-    </ul>
-    
-    <div class="project-tech">
-      <span class="tech-tag">Advanced Design System (ADS)</span>
-      <span class="tech-tag">Microwave and Antenna Engineering</span>
-    </div>
-  </div>
-</div>
-        <!-- Additional projects can be added here following the same structure -->
+        <div class="project-item">
+          <div class="project-title">
+            <h3>
+              Design an Inset-fed Microstrip Antenna at 2.4 GHz using ADS
+              <a href="#" class="project-link" title="Copy project link">
+                <i class="fas fa-link"></i>
+              </a>
+            </h3>
+          </div>
+          
+          <div class="project-description">
+            <p>This project involved the design and simulation of an inset-fed rectangular microstrip patch antenna tuned to operate at 2.4 GHz using Advanced Design System (ADS), a powerful RF/microwave simulation tool. The antenna structure was optimized to achieve impedance matching and minimal signal reflection by adjusting the inset feed position and patch dimensions. Key performance metrics such as the <strong>reflection coefficient (S11), Smith chart, surface current distribution,</strong> and <strong>2D radiation pattern</strong> were analyzed. This was completed as part of an undergraduate project for my L-3, T-1 Microwave and Antenna Engineering sessional.</p>
+          </div>
+          
+          <div class="project-images">
+            <!-- First Row -->
+            <div class="image-row">
+              <div class="project-image">
+                <img src="layout.png" alt="Layout of Microstrip antenna" loading="lazy">
+                <div class="figure-label"> Layout of inset-fed Microstrip Antenna</div>
+              </div>
+              <div class="project-image">
+                <img src="2D radiation.png" alt="2D radiation" loading="lazy">
+                <div class="figure-label">2D radiation pattern</div>
+              </div>
+            </div>
+            
+            <!-- Second Row -->
+            <div class="image-row">
+              <div class="project-image">
+                <img src="3D radiation.png" alt="2D radiation pattern" loading="lazy">
+                <div class="figure-label">3D radiation pattern</div>
+              </div>
+              <div class="project-image">
+                <img src="current distribution.png" alt="Current distribution " loading="lazy">
+                <div class="figure-label">Current distribution </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="project-details">
+            <h4>Key Features:</h4>
+            <ul>
+              <li>Designed specifically for ISM band applications such as Wi-Fi, Zigbee, and Bluetooth.</li>
+              <li>Achieved a <strong>Reflection Coefficient (S11) ~ –20 dB </strong> that indicates strong impedance matching and low return loss at the design frequency.</li>
+              <li>2D Radiation Pattern Analysis simulated the antenna's radiation behavior in the E-plane and H-plane to <strong>assess directivity and beam shape</strong>.</li>
+              <li>Surface Current Distribution visualized current flow patterns to <strong>verify resonant behavior and validate efficient radiation</strong>.</li>
+            </ul>
+            
+            <div class="project-tech">
+              <span class="tech-tag">Advanced Design System (ADS)</span>
+              <span class="tech-tag">Microwave and Antenna Engineering</span>
+            </div>
+          </div>
+        </div>
       </div>
       <footer>
-            <p align="center">&copy; 2025 Durra Tarannum. All rights reserved. @durratarannum</p>
-        </footer>
+        <p align="center">&copy; 2025 Durra Tarannum. All rights reserved. @durratarannum</p>
+      </footer>
     </div>
   </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const projects = document.querySelectorAll('.project-item');
+      const links = document.querySelectorAll('.project-link');
+      
+      // Assign click handlers to each link
+      links.forEach((link, index) => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Create URL with project index (starting from 1)
+          const projectUrl = `${window.location.origin}${window.location.pathname}?project=${index+1}`;
+          
+          // Copy to clipboard
+          navigator.clipboard.writeText(projectUrl).then(() => {
+            // Change icon temporarily to checkmark
+            const originalIcon = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-check"></i>';
+            
+            // Revert after 2 seconds
+            setTimeout(() => {
+              this.innerHTML = originalIcon;
+            }, 2000);
+          }).catch(err => {
+            console.error('Failed to copy:', err);
+            alert('Failed to copy link. Please try again.');
+          });
+        });
+      });
+
+      // Handle direct links when page loads
+      const urlParams = new URLSearchParams(window.location.search);
+      const projectIndex = urlParams.get('project');
+      
+      if (projectIndex && projects[projectIndex-1]) {
+        setTimeout(() => {
+          projects[projectIndex-1].scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }, 300);
+      }
+    });
+  </script>
 </body>
 </html>
