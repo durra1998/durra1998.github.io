@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Projects - Durra Tarannum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4a6fa5;
+      --secondary: #2ecc71;
+      --primary2:#3498db;
+      --accent: #4fc3f7;
+      --dark: #0a2342;
+      --light: #f8f9fa;
+      --text: #333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      color: var(--text);
+      background-color: var(--light);
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Header Styles */
+    .page-header {
+      background: linear-gradient(135deg, var(--primary2), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .page-header h2 {
+      font-size: 3.5rem;
+      margin: 0;
+      animation: fadeInDown 1s ease;
+    }
+    
+    /* Sidebar Styles */
+    .sidebar {
+      width: 280px;
+      background: linear-gradient(135deg, var(--dark), var(--primary));
+      color: white;
+      padding: 2rem 1.5rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .sidebar nav ul {
+      list-style: none;
+      margin-top: 2rem;
+    }
+    
+    .sidebar nav li {
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: fadeInRight 0.5s ease forwards;
+    }
+    
+    .sidebar nav li:nth-child(1) { animation-delay: 0.2s; }
+    .sidebar nav li:nth-child(2) { animation-delay: 0.3s; }
+    .sidebar nav li:nth-child(3) { animation-delay: 0.4s; }
+    .sidebar nav li:nth-child(4) { animation-delay: 0.5s; }
+    .sidebar nav li:nth-child(5) { animation-delay: 0.6s; }
+    .sidebar nav li:nth-child(6) { animation-delay: 0.7s; }
+    
+    .sidebar nav a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      padding: 0.7rem 1rem;
+      border-radius: 6px;
+    }
+    
+    .sidebar nav a:hover, .sidebar nav a.active {
+      color: white;
+      background-color: rgba(255,255,255,0.1);
+      transform: translateX(5px);
+    }
+    
+    .sidebar nav a i {
+      margin-right: 12px;
+      width: 20px;
+      text-align: center;
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 3rem;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Projects Section */
+    .projects-container {
+      margin: 0 auto 3rem;
+    }
+    
+    .project-item {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .project-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    
+    .project-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .project-title h3 {
+      font-size: 1.8rem;
+      color: var(--dark);
+      padding: 1rem 0;
+      margin: 0;
+      position: relative;
+    }
+    
+    .project-title h3::before,
+    .project-title h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+    
+    .project-title h3::before {
+      top: 0;
+    }
+    
+    .project-title h3::after {
+      bottom: 0;
+    }
+    
+    .project-description {
+      margin-bottom: 2rem;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    
+    .project-images {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .project-image {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    
+    .project-image img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .figure-label {
+      font-style: italic;
+      text-align: center;
+      margin-top: 0.5rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+    
+    .project-details {
+      margin-top: 2rem;
+    }
+    
+    .project-details h4 {
+      color: var(--dark);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .project-details h4::before {
+      content: '\f05a';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-right: 8px;
+      color: var(--accent);
+    }
+    
+    .project-details ul {
+      margin-left: 1.5rem;
+    }
+    
+    .project-details li {
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+    
+    .project-details li::before {
+      content: '▹';
+      position: absolute;
+      left: -1.5rem;
+      color: var(--accent);
+    }
+    
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    .project-images {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.image-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.project-image {
+  flex: 1;
+  text-align: center;
+}
+
+.project-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.figure-label {
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .image-row {
+    flex-direction: column;
+  }
+}
+    
+    .tech-tag {
+      background-color: var(--light);
+      color: var(--dark);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      body {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1.5rem;
+      }
+      
+      .sidebar nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      
+      .sidebar nav li {
+        margin-bottom: 0;
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+      
+      .sidebar nav a {
+        padding: 0.5rem 1rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .page-header h2 {
+        font-size: 2.5rem;
+        padding: 3rem 0;
+      }
+      
+      .project-item {
+        padding: 1.5rem;
+      }
+      
+      .project-title h3 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-user"></i> About Me</a></li>
+        <li><a href="education.html" class="active"><i class="fas fa-graduation-cap"></i> Education</a></li>
+        <li><a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a></li>
+        <li><a href="projects.html"><i class="fas fa-code"></i> Projects</a></li>
+        <li><a href="publications.html"><i class="fas fa-book"></i> Publications</a></li>
+        <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  
+  <main class="main-content">
+    <!-- Header Section -->
+    <div class="page-header">
+      <h2>Projects</h2>
+    </div>
+    
+    <div class="container">
+      <div class="projects-container">
+        <!-- Project 1 -->
+        <div class="project-item">
+          <div class="project-title">
+            <h3>Quantum-Classical Hybrid Protocol for Secure Image Encryption</h3>
+          </div>
+          
+          <div class="project-description">
+            <p>This encryption technique is implemented in the context of a hybrid quantum-classical cryptosystem in which a <strong>Quantum Key Distribution protocol</strong> <a href="https://doi.org/10.48550/arXiv.1707.06645" target="_blank">(D Pastorello, 2017)</a>
+             is combined with the <strong>Logistic Sine map</strong> to establish a secure image transmission scheme. Both communication parties utilize same initial values and control parameter for successful encryption and decryption. This encryption method exhibits high levels of reliability and resilience. The project is available <a href="https://github.com/durra1998/qkd_image_encryption" target="_blank">here</a>.
+            </p>
+          </div>
+          
+          <div class="project-images">
+            <div class="project-image">
+              <img src="qkd1.png" alt="encryption decryption image" loading="lazy">
+              <div class="figure-label">Comparison of Original, Encrypted and Decrypted image</div>
+            </div>
+            <div class="project-image">
+              <img src="qkd2-Picsart.png" alt="Histogram" loading="lazy">
+              <div class="figure-label">Histogram Analysis for Pixel Distribution</div>
+            </div>
+          </div>
+          
+          <div class="project-details">
+            <h4>Key Features:</h4>
+            <ul>
+              <li>Provides provable security against <strong>quantum computing attacks</strong>.</li>
+              <li>Uniformly distributes the pixel intensities across the image, effectively masking the statistical characteristics of the original image.</li>
+              <li>Maintains <strong>computational efficiency</strong> for practical deployment.</li>
+              <li>Demonstrates resistance to common cryptographic attacks.</li>
+            </ul>
+            
+            <div class="project-tech">
+              <span class="tech-tag">Qiskit</span>
+              <span class="tech-tag">Numpy</span>
+              <span class="tech-tag">Matplotlib</span>
+              <span class="tech-tag">OpenCV</span>
+              <span class="tech-tag">Pylatexenc</span>
+            </div>
+          </div>
+        </div>
+        <!-- Project 2 -->
+        <div class="project-item">
+          <div class="project-title">
+            <h3>Simulation of a Quantum Private Query Protocol Using W-States in Qiskit with Noise Analysis</h3>
+          </div>
+          
+          <div class="project-description">
+            <p> This project implements and simulates a Quantum Private Query (QPQ) protocol utilizing entangled W-states <a href="https://doi.org/10.1007/s10773-020-04653-4" target="_blank">(RG Zhou, 2021)</a> in the context of the <strong>Noisy Intermediate-Scale Quantum (NISQ)</strong> era, where quantum systems exhibit non-negligible noise levels. Realistic noise models, including <strong>gate and measurement errors</strong>, are integrated into the simulation to evaluate how well the protocol performs under practical conditions. The project is available on my <a href="https://github.com/durra1998/quantum-private-query-qiskit" target="_blank">GitHub</a>.
+            </p>
+          </div>
+          
+          <div class="project-images">
+            <div class="project-image">
+              <img src="heatmap.png" alt="heatmap diagram" loading="lazy" width ="600" height="700">
+              <div class="figure-label">Heatmap showing how protocol success varies with noise levels.</div>
+            </div>
+            
+          </div>
+          
+          <div class="project-details">
+            <h4>Key Features:</h4>
+            <ul>
+              <li>Quantum Private Query Protocol enables secure database queries <strong>without revealing user intent</strong>.</li>
+              <li>NISQ-Era Feasibility Analysis explores the robustness and practicality of QPQ on current quantum devices.</li>
+              <li>Measurement noise poses a <strong>greater challenge</strong> to protocol reliability than gate noise. </li>
+              <li>The protocol demonstrates robustness <strong>under low to moderate noise</strong>, highlighting its promise for NISQ-era devices.</li>
+              
+            </ul>
+            
+            <div class="project-tech">
+              <span class="tech-tag">Qiskit</span>
+              <span class="tech-tag">Numpy</span>
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">Matplotlib</span>
+              <span class="tech-tag">Qiskit-aer</span>
+              <span class="tech-tag">Pylatexenc</span>
+            </div>
+          </div>
+        </div>
+        <!-- Project 3 -->
+        <div class="project-item">
+          <div class="project-title">
+            <h3>4-bit synchronous up/down counter with Load and Reset using Proteus</h3>
+          </div>
+          
+          <div class="project-description">
+            <p> Developed a 4-bit synchronous up/down counter with Load and Reset in Proteus as part of an undergraduate project for my L-3, T-2 Digital Electronics sessional.
+            </p>
+          </div>
+          
+          <div class="project-images">
+            <div class="project-image">
+              <img src="upcount tara.png" alt="upcounter" loading="lazy" width ="600" height="700">
+              <div class="figure-label">Circuit diagram of 4 bit up counter for the counting sequence (0, 1, 4, 5, 6,0,1,4,5,6….)</div>
+            </div>
+            <div class="project-image">
+              <img src="down counter durra.png" alt="downcounter" loading="lazy" width ="600" height="700">
+              <div class="figure-label">This is the 4 bit down counter for the counting sequence (6,5,4,1,0,6..)</div>
+            </div>
+            
+          </div>
+          
+          <div class="project-details">
+            <h4>Key Features:</h4>
+            <ul>
+              <li>The counter supports both upward and downward counting, along with preset (Load) and clear (Reset) operations.</li>
+              <li> Suitable for a wide range of applications in <strong>digital electronics and control systems</strong>.</li>
+              <li>Applicable in digital clocks, frequency dividers, memory address sequencing, and other digital logic circuits. </li>
+              
+              
+            </ul>
+            
+            <div class="project-tech">
+              <span class="tech-tag">Proteus</span>
+              <span class="tech-tag">Digital Electronics</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+<div class="project-item">
+  <div class="project-title">
+    <h3>Design an Inset-fed Microstrip Antenna at 2.4 GHz using ADS</h3>
+  </div>
+  
+  <div class="project-description">
+    <p>This project involved the design and simulation of an inset-fed rectangular microstrip patch antenna tuned to operate at 2.4 GHz using Advanced Design System (ADS), a powerful RF/microwave simulation tool. The antenna structure was optimized to achieve impedance matching and minimal signal reflection by adjusting the inset feed position and patch dimensions. Key performance metrics such as the <strong>reflection coefficient (S11), Smith chart, surface current distribution,</strong> and <strong>2D radiation pattern</strong> were analyzed. This was completed as part of an undergraduate project for my L-3, T-1 Microwave and Antenna Engineering sessional.</p>
+  </div>
+  
+  <div class="project-images">
+    <!-- First Row -->
+    <div class="image-row">
+      <div class="project-image">
+        <img src="layout.png" alt="Layout of Microstrip antenna" loading="lazy">
+        <div class="figure-label"> Layout of inset-fed Microstrip Antenna</div>
+      </div>
+      <div class="project-image">
+        <img src="2D radiation.png" alt="2D radiation" loading="lazy">
+        <div class="figure-label">2D radiation pattern</div>
+      </div>
+    </div>
+    
+    <!-- Second Row -->
+    <div class="image-row">
+      <div class="project-image">
+        <img src="3D radiation.png" alt="2D radiation pattern" loading="lazy">
+        <div class="figure-label">3D radiation pattern</div>
+      </div>
+      <div class="project-image">
+        <img src="current distribution.png" alt="Current distribution " loading="lazy">
+        <div class="figure-label">Current distribution </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="project-details">
+    <h4>Key Features:</h4>
+    <ul>
+      <li>Designed specifically for ISM band applications such as Wi-Fi, Zigbee, and Bluetooth.</li>
+      <li>Achieved a <strong>Reflection Coefficient (S11) ~ –20 dB </strong> that indicates strong impedance matching and low return loss at the design frequency.</li>
+      <li>2D Radiation Pattern Analysis simulated the antenna's radiation behavior in the E-plane and H-plane to <strong>assess directivity and beam shape</strong>.</li>
+      <li>Surface Current Distribution visualized current flow patterns to <strong>verify resonant behavior and validate efficient radiation</strong>.</li>
+    </ul>
+    
+    <div class="project-tech">
+      <span class="tech-tag">Advanced Design System (ADS)</span>
+      <span class="tech-tag">Microwave and Antenna Engineering</span>
+    </div>
+  </div>
+</div>
+        <!-- Additional projects can be added here following the same structure -->
+      </div>
+      <footer>
+            <p align="center">&copy; 2025 Durra Tarannum. All rights reserved. @durratarannum</p>
+        </footer>
+    </div>
+  </main>
+</body>
+</html>

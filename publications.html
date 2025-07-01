@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Publications - Durra Tarannum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4a6fa5;
+      --secondary: #2ecc71;
+      --primary2:#3498db;
+      --accent: #4fc3f7;
+      --dark: #0a2342;
+      --light: #f8f9fa;
+      --text: #333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      color: var(--text);
+      background-color: var(--light);
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Header Styles */
+    .page-header {
+      background: linear-gradient(135deg, var(--primary2), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .page-header h2 {
+      font-size: 3.5rem;
+      margin: 0;
+      animation: fadeInDown 1s ease;
+    }
+    
+    /* Sidebar Styles */
+    .sidebar {
+      width: 280px;
+      background: linear-gradient(135deg, var(--dark), var(--primary));
+      color: white;
+      padding: 2rem 1.5rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .sidebar nav ul {
+      list-style: none;
+      margin-top: 2rem;
+    }
+    
+    .sidebar nav li {
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: fadeInRight 0.5s ease forwards;
+    }
+    
+    .sidebar nav li:nth-child(1) { animation-delay: 0.2s; }
+    .sidebar nav li:nth-child(2) { animation-delay: 0.3s; }
+    .sidebar nav li:nth-child(3) { animation-delay: 0.4s; }
+    .sidebar nav li:nth-child(4) { animation-delay: 0.5s; }
+    .sidebar nav li:nth-child(5) { animation-delay: 0.6s; }
+    .sidebar nav li:nth-child(6) { animation-delay: 0.7s; }
+    
+    .sidebar nav a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      padding: 0.7rem 1rem;
+      border-radius: 6px;
+    }
+    
+    .sidebar nav a:hover, .sidebar nav a.active {
+      color: white;
+      background-color: rgba(255,255,255,0.1);
+      transform: translateX(5px);
+    }
+    
+    .sidebar nav a i {
+      margin-right: 12px;
+      width: 20px;
+      text-align: center;
+    }
+    
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 3rem;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Publications Section */
+    .publications-container {
+      margin: 0 auto 3rem;
+    }
+    
+    .publications-list {
+      list-style: none;
+      counter-reset: publication-counter;
+    }
+    
+    .publications-list li {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      counter-increment: publication-counter;
+    }
+    
+    .publications-list li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    
+    .publications-list li::before {
+      content: counter(publication-counter);
+      position: absolute;
+      top: 1.5rem;
+      left: -1rem;
+      background: var(--accent);
+      color: white;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .publications-list strong {
+      color: var(--dark);
+    }
+    
+    .publications-list em {
+      font-style: italic;
+      color: var(--primary);
+    }
+    
+    .publications-list a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+    
+    .publications-list a:hover {
+      color: var(--secondary);
+      text-decoration: underline;
+    }
+    
+    .publications-list a::after {
+      content: '\f35d';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-left: 6px;
+    }
+    
+    .publication-status {
+      display: inline-block;
+      background-color: #f8f4e5;
+      color: #d45c17;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      body {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1.5rem;
+      }
+      
+      .sidebar nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      
+      .sidebar nav li {
+        margin-bottom: 0;
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+      
+      .sidebar nav a {
+        padding: 0.5rem 1rem;
+      }
+      
+      .publications-list li::before {
+        left: -0.5rem;
+        top: -1rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .page-header h2 {
+        font-size: 2.5rem;
+        padding: 3rem 0;
+      }
+      
+      .publications-list li {
+        padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+      }
+      
+      .publications-list li::before {
+        left: 0.5rem;
+        top: 0.5rem;
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-user"></i> About Me</a></li>
+        <li><a href="education.html" class="active"><i class="fas fa-graduation-cap"></i> Education</a></li>
+        <li><a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a></li>
+        <li><a href="projects.html"><i class="fas fa-code"></i> Projects</a></li>
+        <li><a href="publications.html"><i class="fas fa-book"></i> Publications</a></li>
+        <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  
+  <main class="main-content">
+    <!-- Header Section -->
+    <div class="page-header">
+      <h2>Publications</h2>
+    </div>
+    
+    <div class="container">
+      <div class="publications-container">
+        <ol class="publications-list">
+          <li>
+            <strong>Durra Tarannum</strong>, Kaniz Fatema, Md. Manjurul Gani, Mohammed Shale Jounaed Monir.
+            "<em>Contingency Analysis of an IEEE 9 Bus System Considering Optimal Location of UPFC by Artificial Bee Colony (ABC) Algorithm</em>."
+            In <strong>2024 IEEE International Conference on Power, Electrical, Electronics and Industrial Applications (PEEIACON).</strong>
+            <a href="https://doi.org/10.1109/PEEIACON63629.2024.10800638" target="_blank">DOI: 10.1109/PEEIACON63629.2024.10800638.</a>
+          </li>
+          
+          <li>
+            <strong>Durra Tarannum</strong>, Md. Abu Syed, Bipash Kumar Biswas, Syed Emad Uddin Shubha, Mahdy Rahman Chowdhury.
+            "<em>Quantum-Resistant Image Encryption Using 2D Henon Map with a Three-Qubit Entanglement-Based QKD Protocol</em>."
+            <span class="publication-status">Under review at <strong>APL Quantum</strong>, 2025</span>
+          </li>
+        </ol>
+      </div>
+      <footer>
+            <p align="center">&copy; 2025 Durra Tarannum. All rights reserved. @durratarannum</p>
+        </footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Durra Tarannum | Quantum Researcher</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4a6fa5;
+      --secondary: #166088;
+      --accent: #4fc3f7;
+      --dark: #0a2342;
+      --light: #f8f9fa;
+      --text: #333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      color: var(--text);
+      background-color: var(--light);
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar Styles */
+    .sidebar {
+      width: 280px;
+      background: linear-gradient(135deg, var(--dark), var(--primary));
+      color: white;
+      padding: 2rem 1.5rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .sidebar nav ul {
+      list-style: none;
+      margin-top: 2rem;
+    }
+    
+    .sidebar nav li {
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: fadeInRight 0.5s ease forwards;
+    }
+    
+    .sidebar nav li:nth-child(1) { animation-delay: 0.2s; }
+    .sidebar nav li:nth-child(2) { animation-delay: 0.3s; }
+    .sidebar nav li:nth-child(3) { animation-delay: 0.4s; }
+    .sidebar nav li:nth-child(4) { animation-delay: 0.5s; }
+    .sidebar nav li:nth-child(5) { animation-delay: 0.6s; }
+    .sidebar nav li:nth-child(6) { animation-delay: 0.7s; }
+    
+    .sidebar nav a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      padding: 0.7rem 1rem;
+      border-radius: 6px;
+    }
+    
+    .sidebar nav a:hover, .sidebar nav a.active {
+      color: white;
+      background-color: rgba(255,255,255,0.1);
+      transform: translateX(5px);
+    }
+    
+    .sidebar nav a i {
+      margin-right: 12px;
+      width: 20px;
+      text-align: center;
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 3rem;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Profile Box */
+    .profile-box {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      margin: 3rem 0;
+      padding: 2.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.8s ease;
+    }
+    
+    .profile-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+    
+    .profile-left {
+      flex: 0 0 200px;
+    }
+    
+    .profile {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .profile:hover {
+      transform: scale(1.03);
+    }
+    
+    .profile-right {
+      flex: 1;
+    }
+    
+    .profile-right h1 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    
+    .profile-right p {
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    
+    .profile-right p a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-bottom: 1px dotted var(--primary);
+    }
+    
+    .profile-right p a:hover {
+      color: var(--secondary);
+      border-bottom: 1px solid var(--secondary);
+    }
+    
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.6rem 1.2rem;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .links a:hover {
+      background-color: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .links a i {
+      margin-right: 8px;
+    }
+    
+    /* Sections */
+    section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      animation: fadeInUp 0.8s ease;
+    }
+    
+    section h2 {
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+    
+    #about p {
+      margin-bottom: 1.2rem;
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+    }
+    
+    #research ul {
+      list-style: none;
+    }
+    
+    #research li {
+      margin-bottom: 0.8rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    
+    #research li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+      margin: 2.5rem 0;
+    }
+    
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      body {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1.5rem;
+      }
+      
+      .sidebar nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      
+      .sidebar nav li {
+        margin-bottom: 0;
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+      
+      .sidebar nav a {
+        padding: 0.5rem 1rem;
+      }
+      
+      .profile-box {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+      }
+      
+      .profile-left {
+        flex: 0 0 auto;
+        max-width: 200px;
+      }
+      
+      .links {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .profile-box {
+        padding: 1.5rem;
+      }
+      
+      section {
+        padding: 1.5rem;
+      }
+      
+      .links a {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+      
+      #about p {
+        text-align: left;
+        hyphens: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-user"></i> About Me</a></li>
+        <li><a href="education.html" class="active"><i class="fas fa-graduation-cap"></i> Education</a></li>
+        <li><a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a></li>
+        <li><a href="projects.html"><i class="fas fa-code"></i> Projects</a></li>
+        <li><a href="publications.html"><i class="fas fa-book"></i> Publications</a></li>
+        <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  
+  <main class="main-content">
+    <div class="container">
+      <!-- Profile Box -->
+      <div class="profile-box">
+        <div class="profile-left">
+          <img src="Durra_EEE-Picsart.jpg" alt="Durra Tarannum" class="profile">
+        </div>
+
+        <div class="profile-right">
+          <h1>Durra Tarannum</h1>
+          <p>&#127891; EEE Graduate from <a href="https://www.cuet.ac.bd/" target="_blank">Chittagong University of Engineering & Technology (CUET)</a></p>
+          <p>&#128300; Research Assistant at <a href="https://chiralbd.org" target="_blank">CHIRAL Bangladesh</a></p>
+          <p>&#9889; Seeking Ph.D. opportunities in Quantum Information & Cryptography</p>
+
+          <div class="links">
+            <a href="https://github.com/durra1998" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://scholar.google.com/citations?user=yQe1O04AAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i> Google Scholar</a>
+            <a href="https://www.researchgate.net/profile/Durra-Tarannum-2" target="_blank"><i class="fab fa-researchgate"></i> ResearchGate</a>
+            <a href="https://www.linkedin.com/in/durra-tarannum-3b6308171/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="cv.pdf" target="_blank"><i class="fas fa-file-pdf"></i> CV</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <hr>
+
+      <!-- About Me Section -->
+      <section id="about"> 
+        <h2>About Me</h2>
+        <p>
+          I completed my B.Sc. in Electrical and Electronic Engineering (EEE) from Chittagong University of Engineering & Technology (CUET) in June, 2023. Following my graduation, I served as a Research Assistant at the <a href="https://aihealthlab.owlstown.net/" target="_blank">aiHealth Lab</a> — the research wing of CHIRAL Bangladesh — where I contributed to a project investigating the effectiveness of Large Language Models (LLMs) in medical education in Bangladesh.
+        </p>
+        <p>
+          More recently, I worked on the development of secure communication protocols leveraging entangled quantum states and hybrid quantum-classical frameworks under the supervision of <a href="https://ece.northsouth.edu/people/mahdy-rahman-chowdhury/" target="_blank">Dr. Mahdy Rahman Chowdhury</a>. 
+        </p>
+        <p>
+          My research interests include Quantum Computing, Post-Quantum Cryptography, Hybrid Quantum-Classical Systems, and Machine Learning. I also have foundational knowledge in quantum error correction and quantum algorithms, and I am deeply passionate about exploring their real-world applications.
+        </p>
+        <p>
+          My technical skill set includes <strong>Python</strong>(with libraries such as NumPy, Pandas, scikit-learn, Matplotlib and seaborn), <strong>Qiskit</strong>, <strong>MATLAB</strong>, <strong>LaTeX</strong>, and <strong>Git</strong>. I have practical experience working with quantum programming frameworks such as <strong>Qiskit</strong> and <strong>Cirq</strong>. I have also explored quantum cryptographic primitives such as Quantum Private Query (QPQ) protocols, repetition codes, surface code error correction, and entanglement-based secure communication. Selected projects are available on my <a href="https://github.com/durra1998" target="_blank">GitHub</a> profile.
+        </p>
+        <p>
+          Outside of academics and research, I enjoy photography, traveling, and experimenting with new recipes in the kitchen.
+        </p>
+      </section>
+
+      <!-- Research Section -->
+      <section id="research">
+        <h2>Research Interests</h2>
+        <ul>
+          <li>Quantum Computing</li>
+          <li>Quantum Information & Cryptography</li>
+          <li>Hybrid Quantum-Classical Frameworks</li>
+          <li>Quantum Error Correction</li>
+          <li>Machine Learning</li>
+        </ul>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <p><i class="fas fa-envelope"></i> E-mail: durratarannum [at] gmail [dot] com</p>
+      </section>
+      <footer>
+            <p align="center">&copy; 2025 Durra Tarannum. All rights reserved. @durratarannum</p>
+        </footer>
+    </div>
+  </main>
+</body>
+</html>

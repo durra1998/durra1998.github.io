@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Education - Durra Tarannum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4a6fa5;
+      --secondary: #2ecc71;
+      --primary2:#3498db;
+      --accent: #4fc3f7;
+      --dark: #0a2342;
+      --light: #f8f9fa;
+      --text: #333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      color: var(--text);
+      background-color: var(--light);
+      display: flex;
+      min-height: 100vh;
+    }
+    
+    /* Header Styles */
+    .page-header {
+      background: linear-gradient(135deg, var(--primary2), var(--secondary));
+      color: white;
+      text-align: center;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .page-header h2 {
+      font-size: 3.5rem;
+      margin: 0;
+      animation: fadeInDown 1s ease;
+    }
+    
+    /* Sidebar Styles */
+    .sidebar {
+      width: 280px;
+      background: linear-gradient(135deg, var(--dark), var(--primary));
+      color: white;
+      padding: 2rem 1.5rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    
+    .sidebar nav ul {
+      list-style: none;
+      margin-top: 2rem;
+    }
+    
+    .sidebar nav li {
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: fadeInRight 0.5s ease forwards;
+    }
+    
+    .sidebar nav li:nth-child(1) { animation-delay: 0.2s; }
+    .sidebar nav li:nth-child(2) { animation-delay: 0.3s; }
+    .sidebar nav li:nth-child(3) { animation-delay: 0.4s; }
+    .sidebar nav li:nth-child(4) { animation-delay: 0.5s; }
+    .sidebar nav li:nth-child(5) { animation-delay: 0.6s; }
+    .sidebar nav li:nth-child(6) { animation-delay: 0.7s; }
+    
+    .sidebar nav a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      padding: 0.7rem 1rem;
+      border-radius: 6px;
+    }
+    
+    .sidebar nav a:hover, .sidebar nav a.active {
+      color: white;
+      background-color: rgba(255,255,255,0.1);
+      transform: translateX(5px);
+    }
+    
+    .sidebar nav a i {
+      margin-right: 12px;
+      width: 20px;
+      text-align: center;
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 3rem;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Education Section */
+    .education-container {
+      margin: 0 auto 3rem;
+    }
+    
+    .education-item {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .education-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    
+    .education-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+    }
+    
+    .education-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .education-header h3 {
+      font-size: 1.4rem;
+      color: var(--dark);
+      margin-right: 1rem;
+    }
+    
+    .education-date {
+      background-color: var(--accent);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    
+    .institution {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .institution::before {
+      content: '\f19d';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-right: 8px;
+      color: var(--accent);
+    }
+    
+    .location {
+      color: #666;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .location::before {
+      content: '\f3c5';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-right: 8px;
+      color: var(--accent);
+    }
+    
+    .thesis h4, .courses h4 {
+      font-size: 1.1rem;
+      color: var(--dark);
+      margin: 1.5rem 0 0.8rem 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .thesis h4::before {
+      content: '\f15c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-right: 8px;
+      color: var(--accent);
+    }
+    
+    .courses h4::before {
+      content: '\f518';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-right: 8px;
+      color: var(--accent);
+    }
+    
+    .thesis p {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+      margin-bottom: 1rem;
+    }
+    
+    .course-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.8rem;
+      list-style: none;
+    }
+    
+    .course-list li {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .course-list li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      body {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1.5rem;
+      }
+      
+      .sidebar nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      
+      .sidebar nav li {
+        margin-bottom: 0;
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+      
+      .sidebar nav a {
+        padding: 0.5rem 1rem;
+      }
+      
+      .education-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .education-date {
+        margin-top: 0.5rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .page-header h2 {
+        font-size: 2.5rem;
+        padding: 3rem 0;
+      }
+      
+      .education-item {
+        padding: 1.5rem;
+      }
+      
+      .course-list {
+        grid-template-columns: 1fr;
+      }
+      
+      .thesis p {
+        text-align: left;
+        hyphens: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-user"></i> About Me</a></li>
+        <li><a href="education.html" class="active"><i class="fas fa-graduation-cap"></i> Education</a></li>
+        <li><a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a></li>
+        <li><a href="projects.html"><i class="fas fa-code"></i> Projects</a></li>
+        <li><a href="publications.html"><i class="fas fa-book"></i> Publications</a></li>
+        <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  
+  <main class="main-content">
+    <!-- New Header Section -->
+    <div class="page-header">
+      <h2>Education</h2>
+    </div>
+    
+    <div class="container">
+      <div class="education-container">
+        <div class="education-item">
+          <div class="education-header">
+            <h3>BSc in Electrical & Electronic Engineering</h3>
+            <span class="education-date">January 2018 - June 2023</span>
+          </div>
+          <div class="education-details">
+            <p class="institution">Chittagong University of Engineering & Technology (CUET)</p>
+            <p class="location">Chittagong, Bangladesh</p>
+            
+            <div class="thesis">
+              <h4>Thesis:</h4>
+              <p>Contingency Analysis of an IEEE 9 Bus System Considering Optimal Location of UPFC by Artificial Bee Colony (ABC) Algorithm to ensure power flow and system security in the bus system even after an outage.</p>
+            </div>
+            
+            <div class="courses">
+              <h4>Highlighted Courses:</h4>
+              <ul class="course-list">
+                <li>Digital Signal Processing</li>
+                <li>Biomedical Engineering</li>
+                <li>Power Electronics</li>
+                <li>Electromagnetic Field</li>
+                <li>VLSI Technology</li>
+                <li>Renewable Energy Conversion</li>
+                <li>Control System</li>
+                <li>Semiconductor Physics and Devices</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="education-item">
+          <div class="education-header">
+            <h3>Higher Secondary Certificate Examination (H.S.C)</h3>
+            <span class="education-date">Year 2017</span>
+          </div>
+          <div class="education-details">
+            <p class="institution">Comilla Victoria Government College</p>
+          </div>
+        </div>
+        
+        <div class="education-item">
+          <div class="education-header">
+            <h3>Secondary School Certificate Examination (S.S.C)</h3>
+            <span class="education-date">Year 2015</span>
+          </div>
+          <div class="education-details">
+            <p class="institution">Nawab Faizunnesa Government Girls High School</p>
+          </div>
+        </div>
+      </div>
+      <footer>
+            <p align="center">&copy; 2025 Durra Tarannum. All rights reserved. @durratarannum</p>
+
+        </footer>
+    </div>
+  </main>
+</body>
+</html>
